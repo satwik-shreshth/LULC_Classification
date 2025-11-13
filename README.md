@@ -3,7 +3,7 @@
 # LULC Classification of East Sikkim (Gangtok)
 
 ## Project Overview
-This repository contains a Google Earth Engine script for Land Use/Land Cover (LULC) classification in East Sikkim—centered around Gangtok—using multi-year Sentinel-2 imagery (2020–2024). The project applies Random Forest classification and spectral indices (NDVI, NDWI, NDSI) to distinguish five land cover classes: Water, Forest, Agriculture, Urban, and Barren.
+This repository contains a Google Earth Engine script for Land Use/Land Cover (LULC) classification in East Sikkim centered around Gangtok using multi-year Sentinel-2 imagery (2020–2024). The project applies Random Forest classification and spectral indices (NDVI, NDWI, NDSI) to distinguish five land cover classes: Water, Forest, Agriculture, Urban, and Barren.
 
 ## Features
 
