@@ -1,0 +1,6 @@
+system:index,Agriculture,Barren,Class_Name,Forest,Reference_Class,Urban,Water,.geo
+0,0,0,Water,1,0.0,0,17,"{""type"":""MultiPoint"",""coordinates"":[]}"
+1,0,0,Forest,18,1.0,0,1,"{""type"":""MultiPoint"",""coordinates"":[]}"
+2,8,1,Agriculture,3,2.0,0,0,"{""type"":""MultiPoint"",""coordinates"":[]}"
+3,0,0,Urban,0,3.0,25,0,"{""type"":""MultiPoint"",""coordinates"":[]}"
+4,0,14,Barren,0,4.0,1,2,"{""type"":""MultiPoint"",""coordinates"":[]}"

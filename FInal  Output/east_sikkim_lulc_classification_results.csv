@@ -1,0 +1,6 @@
+LULC_Class,Area_sq_km,Percentage,Color_Code
+Water,140.63564000001327,8,blue
+Forest,968.6279705000915,55.1,green
+Agriculture,263.6918250000249,15,lightgreen
+Urban,103.7187845000098,5.9,grey
+Barren,281.27128000002654,16,red

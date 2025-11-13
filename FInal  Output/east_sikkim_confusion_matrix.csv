@@ -1,0 +1,6 @@
+,Water,Forest,Built-up,Agriculture,Barren
+Water,17,1,0,0,0
+Forest,1,18,0,0,0
+Built-up,0,3,8,0,1
+Agriculture,0,0,2,25,0
+Barren,2,0,0,1,14
