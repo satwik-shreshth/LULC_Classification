@@ -1,0 +1,621 @@
+{
+  "extraction_timestamp": "2026-04-28T03:41:57Z",
+  "study_area": {
+    "district": "East Sikkim",
+    "state": "Sikkim",
+    "country": "India",
+    "admin_source": "FAO/GAUL/2015/level2",
+    "bbox_lon_min": 88.4367,
+    "bbox_lon_max": 88.9233,
+    "bbox_lat_min": 27.1373,
+    "bbox_lat_max": 27.4229,
+    "sentinel2_collection": "COPERNICUS/S2_SR_HARMONIZED",
+    "date_range_start": "2020-01-01",
+    "date_range_end": "2024-01-31",
+    "cloud_threshold_pct": 80,
+    "cloud_masking_method": "QA60 bitmask with NDSI snow preservation (NDSI > 0.4)",
+    "composite_method": "Median composite",
+    "map_scale_m": 10,
+    "crs": "EPSG:4326",
+    "dem_source": "USGS/SRTMGL1_003",
+    "worldcover_source": "ESA/WorldCover/v200 (2021)",
+    "gee_project": "lulc-467806",
+    "export_filename": "LULC_EastSikkim_RF",
+    "export_format": "GeoTIFF",
+    "bbox_area_approx_km2": 1521.8
+  },
+  "feature_info": {
+    "sentinel2_bands": [
+      "B2 (Blue, 490 nm)",
+      "B3 (Green, 560 nm)",
+      "B4 (Red, 665 nm)",
+      "B8 (NIR, 842 nm)",
+      "B11 (SWIR-1, 1610 nm)",
+      "B12 (SWIR-2, 2190 nm)"
+    ],
+    "spectral_indices": [
+      {
+        "name": "NDVI",
+        "formula": "(B8-B4)/(B8+B4)",
+        "purpose": "Vegetation density"
+      },
+      {
+        "name": "NDWI",
+        "formula": "(B3-B8)/(B3+B8)",
+        "purpose": "Water bodies"
+      },
+      {
+        "name": "NDSI",
+        "formula": "(B3-B11)/(B3+B11)",
+        "purpose": "Snow/ice detection"
+      },
+      {
+        "name": "NDVI_winter",
+        "formula": "(B8-B4)/(B8+B4)",
+        "purpose": "Seasonal vegetation (Dec\u2013Feb 2021/22)"
+      },
+      {
+        "name": "NDVI_monsoon",
+        "formula": "(B8-B4)/(B8+B4)",
+        "purpose": "Seasonal vegetation (Jun\u2013Sep 2021)"
+      },
+      {
+        "name": "NDVI_diff",
+        "formula": "NDVI_monsoon - NDVI_winter",
+        "purpose": "Phenological variability"
+      }
+    ],
+    "terrain_bands": [
+      {
+        "name": "elevation",
+        "source": "USGS SRTM",
+        "unit": "m"
+      },
+      {
+        "name": "slope",
+        "source": "ee.Terrain.slope(DEM)",
+        "unit": "degrees"
+      },
+      {
+        "name": "aspect",
+        "source": "ee.Terrain.aspect(DEM)",
+        "unit": "degrees"
+      }
+    ],
+    "total_features": 15,
+    "winter_period": "2021-12-01 to 2022-02-28",
+    "monsoon_period": "2021-06-01 to 2021-09-30",
+    "gee_band_names": [
+      "B2",
+      "B3",
+      "B4",
+      "B8",
+      "B11",
+      "B12",
+      "NDVI",
+      "NDWI",
+      "NDSI",
+      "elevation",
+      "slope",
+      "aspect",
+      "NDVI_winter",
+      "NDVI_monsoon",
+      "NDVI_diff"
+    ]
+  },
+  "lulc_classes": {
+    "num_classes": 5,
+    "classes": [
+      {
+        "id": 0,
+        "name": "Water / Snow",
+        "color_hex": "#1a6fba",
+        "worldcover_codes": [
+          80,
+          90
+        ],
+        "description": "Permanent/seasonal water bodies, glaciers, snow fields"
+      },
+      {
+        "id": 1,
+        "name": "Vegetation",
+        "color_hex": "#228b22",
+        "worldcover_codes": [
+          10,
+          20
+        ],
+        "description": "Dense forest, closed-canopy tree cover"
+      },
+      {
+        "id": 2,
+        "name": "Grassland / Cropland",
+        "color_hex": "#90ee90",
+        "worldcover_codes": [
+          30,
+          40
+        ],
+        "description": "Shrubland, herbaceous vegetation, agricultural land"
+      },
+      {
+        "id": 3,
+        "name": "Built-up",
+        "color_hex": "#d2691e",
+        "worldcover_codes": [
+          50
+        ],
+        "description": "Urban areas, settlements, impervious surfaces"
+      },
+      {
+        "id": 4,
+        "name": "Bare Land",
+        "color_hex": "#f5deb3",
+        "worldcover_codes": [
+          60
+        ],
+        "description": "Bare rock, soil, sparse vegetation, exposed surfaces"
+      }
+    ],
+    "worldcover_remap_from": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      80,
+      90
+    ],
+    "worldcover_remap_to": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      4,
+      0,
+      0
+    ]
+  },
+  "sample_statistics": {
+    "original_training_points": 346,
+    "worldcover_extra_points": 1000,
+    "total_merged_points": 1337,
+    "after_null_filter": 1337,
+    "sampled_at_scale_10m": 1308,
+    "train_split_pct": 70,
+    "val_split_pct": 30,
+    "train_set_size": 883,
+    "val_set_size": 425,
+    "random_seed": 42,
+    "worldcover_strat_per_class": 200,
+    "per_class_counts": {
+      "0": 250,
+      "1": 277,
+      "2": 250,
+      "3": 299,
+      "4": 261
+    },
+    "per_class_named": {
+      "Water/Snow": 250,
+      "Vegetation": 277,
+      "Grassland/Cropland": 250,
+      "Built-up": 299,
+      "Bare Land": 261
+    }
+  },
+  "classifier_params": {
+    "random_forest": {
+      "algorithm": "smileRandomForest (GEE)",
+      "numberOfTrees": 200,
+      "variablesPerSplit": 3,
+      "minLeafPopulation": 2,
+      "seed": 42,
+      "classProperty": "landcover",
+      "inputProperties": [
+        "B2",
+        "B3",
+        "B4",
+        "B8",
+        "B11",
+        "B12",
+        "NDVI",
+        "NDWI",
+        "NDSI",
+        "elevation",
+        "slope",
+        "aspect",
+        "NDVI_winter",
+        "NDVI_monsoon",
+        "NDVI_diff"
+      ]
+    },
+    "gradient_tree_boost": {
+      "algorithm": "smileGradientTreeBoost (GEE)",
+      "numberOfTrees": 200,
+      "shrinkage": 0.05,
+      "seed": 42,
+      "classProperty": "landcover",
+      "inputProperties": [
+        "B2",
+        "B3",
+        "B4",
+        "B8",
+        "B11",
+        "B12",
+        "NDVI",
+        "NDWI",
+        "NDSI",
+        "elevation",
+        "slope",
+        "aspect",
+        "NDVI_winter",
+        "NDVI_monsoon",
+        "NDVI_diff"
+      ]
+    },
+    "chosen_for_export": "Random Forest",
+    "rationale": "Higher or comparable OA; simpler probability calibration"
+  },
+  "accuracy_metrics": {
+    "random_forest": {
+      "overall_accuracy_pct": 75.7647,
+      "kappa": 0.6956,
+      "confusion_matrix": [
+        [
+          74,
+          12,
+          2,
+          4,
+          3
+        ],
+        [
+          1,
+          77,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          21,
+          45,
+          6,
+          7
+        ],
+        [
+          0,
+          6,
+          4,
+          89,
+          0
+        ],
+        [
+          9,
+          14,
+          3,
+          8,
+          37
+        ]
+      ],
+      "producers_accuracy_pct": {
+        "Water/Snow": 77.89,
+        "Vegetation": 97.47,
+        "Grassland/Cropland": 55.56,
+        "Built-up": 89.9,
+        "Bare Land": 52.11
+      },
+      "consumers_accuracy_pct": {
+        "Water/Snow": 86.05,
+        "Vegetation": 59.23,
+        "Grassland/Cropland": 81.82,
+        "Built-up": 83.18,
+        "Bare Land": 78.72
+      },
+      "f1_score_pct": {
+        "Water/Snow": 81.77,
+        "Vegetation": 73.68,
+        "Grassland/Cropland": 66.18,
+        "Built-up": 86.41,
+        "Bare Land": 62.71
+      },
+      "omission_error_pct": {
+        "Water/Snow": 22.11,
+        "Vegetation": 2.53,
+        "Grassland/Cropland": 44.44,
+        "Built-up": 10.1,
+        "Bare Land": 47.89
+      },
+      "commission_error_pct": {
+        "Water/Snow": 13.95,
+        "Vegetation": 40.77,
+        "Grassland/Cropland": 18.18,
+        "Built-up": 16.82,
+        "Bare Land": 21.28
+      }
+    },
+    "gradient_tree_boost": {
+      "overall_accuracy_pct": 76.0,
+      "kappa": 0.699,
+      "confusion_matrix": [
+        [
+          72,
+          10,
+          2,
+          3,
+          8
+        ],
+        [
+          2,
+          72,
+          4,
+          0,
+          1
+        ],
+        [
+          1,
+          21,
+          47,
+          6,
+          6
+        ],
+        [
+          0,
+          5,
+          4,
+          88,
+          2
+        ],
+        [
+          9,
+          9,
+          4,
+          5,
+          44
+        ]
+      ],
+      "producers_accuracy_pct": {
+        "Water/Snow": 75.79,
+        "Vegetation": 91.14,
+        "Grassland/Cropland": 58.02,
+        "Built-up": 88.89,
+        "Bare Land": 61.97
+      },
+      "consumers_accuracy_pct": {
+        "Water/Snow": 85.71,
+        "Vegetation": 61.54,
+        "Grassland/Cropland": 77.05,
+        "Built-up": 86.27,
+        "Bare Land": 72.13
+      },
+      "f1_score_pct": {
+        "Water/Snow": 80.45,
+        "Vegetation": 73.47,
+        "Grassland/Cropland": 66.19,
+        "Built-up": 87.56,
+        "Bare Land": 66.67
+      },
+      "omission_error_pct": {
+        "Water/Snow": 24.21,
+        "Vegetation": 8.86,
+        "Grassland/Cropland": 41.98,
+        "Built-up": 11.11,
+        "Bare Land": 38.03
+      },
+      "commission_error_pct": {
+        "Water/Snow": 14.29,
+        "Vegetation": 38.46,
+        "Grassland/Cropland": 22.95,
+        "Built-up": 13.73,
+        "Bare Land": 27.87
+      }
+    },
+    "better_classifier": "GTB",
+    "oa_difference_pct": 0.2353,
+    "kappa_difference": 0.0034
+  },
+  "roc_metrics": {
+    "available": true,
+    "rf_auc_per_class": {
+      "Water/Snow": 0.9526,
+      "Vegetation": 0.937,
+      "Grassland/Cropland": 0.9207,
+      "Built-up": 0.9756,
+      "Bare Land": 0.9209
+    },
+    "gtb_auc_per_class": {
+      "Water/Snow": 0.9556,
+      "Vegetation": 0.9498,
+      "Grassland/Cropland": 0.9194,
+      "Built-up": 0.9767,
+      "Bare Land": 0.9391
+    },
+    "rf_macro_auc": 0.9414,
+    "gtb_macro_auc": 0.9481,
+    "rf_ap_per_class": {
+      "Water/Snow": 0.9008,
+      "Vegetation": 0.7217,
+      "Grassland/Cropland": 0.7812,
+      "Built-up": 0.9458,
+      "Bare Land": 0.7416
+    },
+    "gtb_ap_per_class": {
+      "Water/Snow": 0.9009,
+      "Vegetation": 0.7786,
+      "Grassland/Cropland": 0.7709,
+      "Built-up": 0.9528,
+      "Bare Land": 0.7777
+    }
+  },
+  "figure_inventory": [
+    {
+      "filename": "CM_01_RF_ConfusionMatrix_Counts.png",
+      "caption": "Confusion matrix \u2014 RF (raw counts)",
+      "exists": true
+    },
+    {
+      "filename": "CM_02_GTB_ConfusionMatrix_Counts.png",
+      "caption": "Confusion matrix \u2014 GTB (raw counts)",
+      "exists": true
+    },
+    {
+      "filename": "CM_03_RF_ConfusionMatrix_Normalized.png",
+      "caption": "Confusion matrix \u2014 RF (row-normalized %)",
+      "exists": true
+    },
+    {
+      "filename": "CM_04_GTB_ConfusionMatrix_Normalized.png",
+      "caption": "Confusion matrix \u2014 GTB (row-normalized %)",
+      "exists": true
+    },
+    {
+      "filename": "ACC_05_OverallAccuracy_RF_vs_GTB.png",
+      "caption": "Overall accuracy comparison \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "ACC_06_Kappa_RF_vs_GTB.png",
+      "caption": "Cohen's Kappa comparison \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "PA_07_RF_ProducerConsumerAccuracy_PerClass.png",
+      "caption": "Producer's & Consumer's accuracy per class \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "PA_08_GTB_ProducerConsumerAccuracy_PerClass.png",
+      "caption": "Producer's & Consumer's accuracy per class \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "PA_09_ProducersAccuracy_RF_vs_GTB.png",
+      "caption": "Producer's accuracy comparison \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "PA_10_ConsumersAccuracy_RF_vs_GTB.png",
+      "caption": "Consumer's accuracy comparison \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "F1_11_RF_F1Score_PerClass.png",
+      "caption": "F1-score per class \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "F1_12_GTB_F1Score_PerClass.png",
+      "caption": "F1-score per class \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "F1_13_F1Score_RF_vs_GTB.png",
+      "caption": "F1-score comparison \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "ERR_14_OmissionError_RF_vs_GTB.png",
+      "caption": "Omission error \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "ERR_15_CommissionError_RF_vs_GTB.png",
+      "caption": "Commission error \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "RAD_16_RF_RadarChart_AccuracyMetrics.png",
+      "caption": "Radar chart of accuracy metrics \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "RAD_17_GTB_RadarChart_AccuracyMetrics.png",
+      "caption": "Radar chart of accuracy metrics \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "HM_18_RF_MetricsHeatmap_PerClass.png",
+      "caption": "Metrics heatmap per class \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "HM_19_GTB_MetricsHeatmap_PerClass.png",
+      "caption": "Metrics heatmap per class \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "PRED_20_RF_TrueVsPredicted_ClassCounts.png",
+      "caption": "True vs predicted class counts \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "PRED_21_GTB_TrueVsPredicted_ClassCounts.png",
+      "caption": "True vs predicted class counts \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "PRED_22_PerClassPredictionAccuracy_RF_vs_GTB.png",
+      "caption": "Per-class prediction accuracy \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "DIST_23_TrainingSampleDistribution_Pie.png",
+      "caption": "Training sample distribution \u2014 donut chart",
+      "exists": true
+    },
+    {
+      "filename": "DIST_24_TrainingSampleProportion_Bar.png",
+      "caption": "Training sample proportion \u2014 bar chart",
+      "exists": true
+    },
+    {
+      "filename": "TBL_25_AccuracySummary_RF_vs_GTB.png",
+      "caption": "Summary accuracy table \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "TBL_26_PerClassMetrics_RF_vs_GTB.png",
+      "caption": "Per-class metrics table \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "TBL_27_ErrorMetrics_RF_vs_GTB.png",
+      "caption": "Error metrics table \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "ROC_28_RF_ROCCurve_PerClass.png",
+      "caption": "ROC curves per class \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "ROC_29_GTB_ROCCurve_PerClass.png",
+      "caption": "ROC curves per class \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "ROC_30_MacroAverageROC_RF_vs_GTB.png",
+      "caption": "Macro-average ROC \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "ROC_31_AUC_PerClass_RF_vs_GTB.png",
+      "caption": "AUC-ROC per class \u2014 RF vs GTB",
+      "exists": true
+    },
+    {
+      "filename": "PR_32_RF_PrecisionRecallCurve_PerClass.png",
+      "caption": "Precision\u2013recall curves per class \u2014 RF",
+      "exists": true
+    },
+    {
+      "filename": "PR_33_GTB_PrecisionRecallCurve_PerClass.png",
+      "caption": "Precision\u2013recall curves per class \u2014 GTB",
+      "exists": true
+    },
+    {
+      "filename": "PR_34_AveragePrecision_PerClass_RF_vs_GTB.png",
+      "caption": "Average precision per class \u2014 RF vs GTB",
+      "exists": true
+    }
+  ]
+}
