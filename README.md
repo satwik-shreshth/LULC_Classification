@@ -35,9 +35,9 @@ Two classifiers are compared — **Random Forest (RF)** and **Gradient Tree Boos
 |--------|-------|
 | 🔵 Blue | Water |
 | 🟢 Dark Green | Forest |
-| 🟩 Light Green | Highland / Snow Cover |
+| ⬜ White | Highland / Snow Cover |
 | 🔴 Red | Built-up Area |
-| 🟫 Tan | Barren Land |
+|  Greyish Pink | Barren Land |
 
 ---
 
